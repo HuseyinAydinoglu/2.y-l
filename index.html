@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Hüseyin-Nida 2.Yılımız </title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #ffd6e0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #c71585;
+    }
+
+    .hearts {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 30px;
+      margin: 20px;
+    }
+
+    .heart {
+      width: 80px;
+      height: 70px;
+      background-color: red;
+      position: relative;
+      cursor: pointer;
+      transform: rotate(-45deg);
+      transition: transform 0.3s ease;
+      animation: bounce 1.5s infinite;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      width: 80px;
+      height: 80px;
+      background-color: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -40px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 40px;
+      top: 0;
+    }
+
+    .heart.opened {
+      opacity: 0.5;
+      animation: none;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .message-box {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #333;
+      max-width: 400px;
+      min-height: 50px;
+    }
+
+    .final-message {
+      display: none;
+      margin-top: 40px;
+      font-size: 2em;
+      color: #c71585;
+      font-weight: bold;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Nida'm İçin 💖</h1>
+  <div class="hearts">
+    <div class="heart" onclick="openHeart(0, this)"></div>
+    <div class="heart" onclick="openHeart(1, this)"></div>
+    <div class="heart" onclick="openHeart(2, this)"></div>
+    <div class="heart" onclick="openHeart(3, this)"></div>
+    <div class="heart" onclick="openHeart(4, this)"></div>
+    <div class="heart" onclick="openHeart(5, this)"></div>
+  </div>
+  <div class="message-box" id="messageBox">Kalplerden birine tıkla bakalım...</div>
+  <div class="final-message" id="finalMessage">Seni seviyorum 💖 2. yılımız kutlu olsun sevgilim!</div>
+
+  <script>
+    const messages = [
+      "Her şeyin en güzelini hak eden kadın, iyi ki hayatımdasın",
+      "Ne olursa olsun hep senin desteğin beni ayakta tuttu",
+      "İlişkimizin ikinci baharı en güzel bahar olacak sevgilim",
+      "Seni her zaman en güzel şekilde seveceğim",
+      "Gülüşün benim için yaşam sebebim oldu",
+      "Hayatıma kattığın her şey için teşekkürler sevgilim"
+    ];
+
+    let opened = [false, false, false, false, false, false];
+
+    function openHeart(index, element) {
+      if (!opened[index]) {
+        element.classList.add('opened');
+        document.getElementById("messageBox").innerText = messages[index];
+        opened[index] = true;
+
+        if (opened.every(Boolean)) {
+          document.getElementById("finalMessage").style.display = "block";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
